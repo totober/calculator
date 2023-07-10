@@ -42,31 +42,64 @@ function operate(numberA, operator, numbreB) {
 
 // show numbers chosen by the user in the display "screen" //
 
-let btnContainer = document.querySelector(".button-container");
+
 let screen = document.querySelector(".screen-display");
-let btnNumber = document.querySelector(".number-container");
-let btnOperator = document.querySelector(".operator-container");
+let btnNumber = document.querySelectorAll(".number");
+let btnOperator = document.querySelectorAll(".operator");
+
  
-btnNumber.addEventListener("click", (e) => screen.textContent = e.target.textContent).children;
-btnOperator.addEventListener("click", (e) => screen.textContent = e.target.textContent).children; 
+btnNumber.forEach(item => item.addEventListener("click", numberDisplay))
+console.log(btnNumber)
+btnOperator.forEach(item => item.addEventListener("click", operatorDisplay)) 
+console.log(btnOperator)
 
-btnContainer.addEventListener("click", screenDisplay);
 
-let screenValue = "";
+let numberScreen = "";
 
- function screenDisplay (e) {
+ function numberDisplay (e) {
+   
+    
+   let numberValue = Number(e.target.textContent);
+   console.log(numberValue)
+   console.log(typeof numberValue)
 
-let btnValue = e.target.textContent;
 
-console.log(btnValue);
-/* let operatorValue = e.target.textContent;
-console.log(operatorValue); */
+    numberScreen += numberValue
 
-screenValue += btnValue;
 
-screen.textContent = screenValue;
-
+   return screen.textContent = numberScreen
 } 
+
+    let operatorScreen = "";
+
+function operatorDisplay(e) {
+
+
+       let operatorValue = e.target.textContent
+    console.log(operatorValue)
+    console.log(typeof operatorValue)
+
+    operatorScreen += operatorValue
+
+    return screen.textContent = operatorScreen;
+}
+
+
+//let arrValue = Array.from(screenValue)
+//console.log(arrValue)
+
+
+
+
+/* if (typeof screenValue.value === "number" && "string") {
+
+    screenValue = numberValue;
+
+    numberA = screenValue
+    console.log(numberA)
+
+} else if (typeof screenValue === ) */
+
 
 
 
