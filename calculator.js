@@ -39,3 +39,37 @@ function operate(numberA, operator, numbreB) {
     }
 
 }
+
+// show numbers chosen by the user in the display "screen" //
+
+let btnContainer = document.querySelector(".button-container");
+let screen = document.querySelector(".screen-display");
+/* 
+btnNumber.addEventListener("click", (e) => screen.textContent = e.target.textContent);
+btnOperator.addEventListener("click", (e) => screen.textContent = e.target.textContent); */
+
+btnContainer.addEventListener("click", screenDisplay);
+
+let screenValue = "";
+
+ function screenDisplay (e) {
+
+    if (btnContainer.children)  {
+
+        let btnValue = e.target.textContent;
+        console.log(btnValue);
+        screenValue += btnValue;
+        screen.textContent = screenValue;
+    }
+
+
+
+/* let operatorValue = e.target.textContent;
+console.log(operatorValue); */
+
+
+
+
+
+} 
+
