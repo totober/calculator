@@ -18,24 +18,19 @@ function division (a, b) {
 
 // variables to keep the 3 parts of the calculation operation //
 
-let numberA;
-
-let operator;
-
-let numbreB;
 
 // function OPERATE //
 
-function operate(numberA, operator, numbreB) {
+function operate(numberA, operator, numberB) {
     
     if (operator === "+") {
-        sum(numberA, numbreB)
+       return sum(numberA, numberB)
     } else if (operator === "-") {
-        subtract(numberA, numbreB)
+       return subtract(numberA, numberB)
     } else if (operator === "x"){
-        multiply(numberA, numbreB) 
+       return multiply(numberA, numberB) 
     } else if (operator === "%") {
-        division(numberA, numbreB)
+       return division(numberA, numberB)
     }
 
 }
@@ -48,13 +43,64 @@ let btnNumber = document.querySelectorAll(".number");
 let btnOperator = document.querySelectorAll(".operator");
 
  
-btnNumber.forEach(item => item.addEventListener("click", numberDisplay))
+btnNumber.forEach(item => item.addEventListener("click", screenDisplayOf))
 console.log(btnNumber)
-btnOperator.forEach(item => item.addEventListener("click", operatorDisplay)) 
+btnOperator.forEach(item => item.addEventListener("click", screenDisplayOf)) 
 console.log(btnOperator)
 
 
+
 let screenDisplay = "";
+
+function screenDisplayOf (e) {
+
+    let valueOf = e.target.textContent;
+    screenDisplay += valueOf
+
+  screen.textContent = screenDisplay;
+  
+  let reg = /([0-9]+)([+\-x%])([0-9]+)([=+x%-])/;
+    console.log(reg)
+
+
+    let comp = screen.textContent.match(reg)
+
+    
+ if(reg.test(screen.textContent)){
+
+    let numberA = Number(comp[1]);
+    
+    let operator = comp[2];
+    
+    let numberB = Number(comp[3]);
+
+    let operator2 = comp[4];
+
+   
+
+        let result = operate(numberA, operator, numberB)
+
+        if (operator2 !== "=") {
+               return screenDisplay = `${result}${operator2}`;
+        
+        } else {
+           return screenDisplay = `${result}.`;
+        }
+     
+    }
+
+
+return screenDisplay
+
+}
+
+
+
+
+
+
+
+/* let screenDisplay = "";
 
  function numberDisplay (e) {
    
@@ -81,19 +127,13 @@ function operatorDisplay(e) {
     screenDisplay += operatorValue
 
     return screen.textContent = screenDisplay;
-}
+} */
 
-let reg = /([0-9]+)([+\-x%])([0-9]+)(=)?/;
-console.log(reg)
+
 
 console.log(screen.textContent)
 
-function compare(){
 
-let comp = screen.textContent.match(reg)
-console.log(comp)
-
-}
 
 
 
