@@ -54,7 +54,7 @@ btnOperator.forEach(item => item.addEventListener("click", operatorDisplay))
 console.log(btnOperator)
 
 
-let numberScreen = "";
+let screenDisplay = "";
 
  function numberDisplay (e) {
    
@@ -64,13 +64,12 @@ let numberScreen = "";
    console.log(typeof numberValue)
 
 
-    numberScreen += numberValue
+   screenDisplay += numberValue
 
 
-   return screen.textContent = numberScreen
+   return screen.textContent = screenDisplay
 } 
 
-    let operatorScreen = "";
 
 function operatorDisplay(e) {
 
@@ -79,10 +78,31 @@ function operatorDisplay(e) {
     console.log(operatorValue)
     console.log(typeof operatorValue)
 
-    operatorScreen += operatorValue
+    screenDisplay += operatorValue
 
-    return screen.textContent = operatorScreen;
+    return screen.textContent = screenDisplay;
 }
+
+let reg = /([0-9]+)([+\-x%])([0-9]+)(=)?/;
+console.log(reg)
+
+console.log(screen.textContent)
+
+function compare(){
+
+let comp = screen.textContent.match(reg)
+console.log(comp)
+
+}
+
+
+
+
+/* function validate(){
+
+RegExp.test(screenDisplay.value)
+
+} */
 
 
 //let arrValue = Array.from(screenValue)
@@ -91,14 +111,14 @@ function operatorDisplay(e) {
 
 
 
-/* if (typeof screenValue.value === "number" && "string") {
+/*  if (typeof screenValue.value === "number" && "string") {
 
     screenValue = numberValue;
 
     numberA = screenValue
     console.log(numberA)
 
-} else if (typeof screenValue === ) */
+} else if (typeof screenValue === )  */
 
 
 
