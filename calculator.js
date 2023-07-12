@@ -55,11 +55,16 @@ let screenDisplay = "";
 function screenDisplayOf (e) {
 
     let valueOf = e.target.textContent;
-    screenDisplay += valueOf
+    if(valueOf !== "clear"){
+        screenDisplay += valueOf
+    } else {
+        screenDisplay = ""
+    }
+    
 
   screen.textContent = screenDisplay;
   
-  let reg = /([0-9]+)([+\-x%])([0-9]+)([=+x%-])/;
+  let reg = /([0-9])+([+\-x%])([0-9])+([=+x%-])/;
     console.log(reg)
 
 
@@ -80,11 +85,11 @@ function screenDisplayOf (e) {
 
         let result = operate(numberA, operator, numberB)
 
-        if (operator2 !== "=") {
-               return screenDisplay = `${result}${operator2}`;
+        if (operator2 === "=") {
+            return screenDisplay = `${result}`;   
         
         } else {
-           return screenDisplay = `${result}.`;
+           return screenDisplay = `${result}${operator2}`;
         }
      
     }
