@@ -5,7 +5,7 @@ function sum (a, b) {
 }
 
 function subtract (a, b) {
-    return a - b;
+    return b - a;
 }
 
 function multiply (a, b) {
@@ -50,27 +50,60 @@ console.log(btnOperator)
 
 
 let screenDisplay = "";
-let numberA = 0;
+//let numberA = 0;
 let operator = "";
+//let numberB = 0;
+let numberA = 0; 
 let numberB = 0;
+let operator2 = "";
 
 
 function storeValues(e) {
+
+      if(e.target.textContent === "clear") {
+
+    screenDisplay = "";
+    screen.textContent = "";
+    operator = "";
+    numberA = 0; 
+    numberB = 0;
+
+   }
+
+
     if (e.target.className === "number"){
         screenDisplay += e.target.textContent;
         screen.textContent = screenDisplay; 
-        numberA = screen.textContent;
+        numberA = Number(screen.textContent);
        console.log(numberA)
-    } else if (e.target.textContent === "+" || "-" || "x" || "%"){
-        operator = e.target.textContent
-       console.log(operator)
-       screenDisplay = "";
-       numberB = screen.textContent;
-       operate(numberB, operator, numberA)
+
     } 
     
+    else if (e.target.textContent === "+" || e.target.textContent === "-" || e.target.textContent === "x"|| e.target.textContent === "%"){
+        screenDisplay = "";
+        operator = e.target.textContent
+        console.log(operator)
+        
+       numberB = Number(screen.textContent);
+       console.log(numberB);
+          
+    }else if(e.target.textContent === "="){
+        let result = operate(numberA, operator, numberB)
+        console.log(result) 
+     screen.textContent = result
+    
+    }
+
+
+let values = [numberA, operator, numberB, operator2]
+console.log(values)   
     
 }
+
+
+
+
+
 
 
 
@@ -228,12 +261,6 @@ function operatorDisplay(e) {
 
     return screen.textContent = screenDisplay;
 } */
-
-
-
-console.log(screen.textContent)
-
-
 
 
 
