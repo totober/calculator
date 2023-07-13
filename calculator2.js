@@ -21,14 +21,14 @@ function division (a, b) {
 
 // function OPERATE //
 
-function operate(numberA, operator, numberB) {
+function operate(numberB, operator, numberA) {
     
     if (operator === "+") {
-       return sum(numberA, numberB)
+       return sum(numberB, numberA)
     } else if (operator === "-") {
-       return subtract(numberA, numberB)
+       return subtract(numberB, numberA)
     } else if (operator === "x"){
-       return multiply(numberA, numberB) 
+       return multiply(numberB, numberA) 
     } else if (operator === "%") {
        return division(numberA, numberB)
     }
@@ -43,28 +43,123 @@ let btnNumber = document.querySelectorAll(".number");
 let btnOperator = document.querySelectorAll(".operator");
 
  
-btnNumber.forEach(item => item.addEventListener("click", screenDisplayOf))
+btnNumber.forEach(item => item.addEventListener("click", storeValues))
 console.log(btnNumber)
-btnOperator.forEach(item => item.addEventListener("click", screenDisplayOf)) 
+btnOperator.forEach(item => item.addEventListener("click", storeValues)) 
 console.log(btnOperator)
 
 
-
 let screenDisplay = "";
+let numberA = 0;
+let operator = "";
+let numberB = 0;
 
-function screenDisplayOf (e) {
 
-
-    if(e.target.textContent === "clear"){
-        screenDisplay = ""
-    } else if (e.target.className === "number"){
-        screenDisplay += e.target.textContent
+function storeValues(e) {
+    if (e.target.className === "number"){
+        screenDisplay += e.target.textContent;
+        screen.textContent = screenDisplay; 
+        numberA = screen.textContent;
+       console.log(numberA)
+    } else if (e.target.textContent === "+" || "-" || "x" || "%"){
+        operator = e.target.textContent
+       console.log(operator)
+       screenDisplay = "";
+       numberB = screen.textContent;
+       operate(numberB, operator, numberA)
     } 
+    
+    
+}
+
+
+
+/* let regnumb = /([0-9]+)/
+
+if (e.target.className === "number" && (e.target.textContent === "+" || "-" || "x" || "%") && e.target.className === "number"){
+    screenDisplay = ""
+    numberB = e.target.textContent
+    console.log(numberB)
+} else if (regnumb.test(e.target.textContent) ) {   //&& e.target.textContent === "+" || "-" || "x" || "%"
+        numberA = screen.textContent
+        console.log(numberA)
+    }
+
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* let screenDisplay = "";
+
+function numberDisplay(e){
+
+   let value = e.target.textContent;
+   console.log(value)
+
+    screenDisplay += value;
+
+    screen.textContent = screenDisplay;
+
+return value
+    
+}
+
+
+
+
+function operatorDisplay(e){
+
+   let value = e.target.textContent
+   console.log(value)
+
+return value
+
+} */
+
+
+
+
+
+
+
+/* function screenDisplayOf (e) {
+
+    let valueOf = e.target.textContent;
+    if(valueOf !== "clear"){
+        screenDisplay += valueOf
+    } else {
+        screenDisplay = ""
+    }
     
 
   screen.textContent = screenDisplay;
   
-  let reg = /([0-9]+)([+\-x%])([0-9]+)([=+x%-])/;
+  let reg = /([0-9])+([+\-x%])([0-9])+([=+x%-])/;
     console.log(reg)
 
 
@@ -97,17 +192,10 @@ function screenDisplayOf (e) {
 
 return screenDisplay
 
-}
-
-
-
-/*if(valueOf === "0" || "1" || "2" || "3" || "4" || "5" || "6" || "7" || "8" || "9"){
-    screenDisplay += valueOf
-} else if(valueOf === "clear"){
-    screenDisplay = ""
-} else if (valueOf === "-" || "+" || "%" || "x"){
-    screenDisplay = false
 } */
+
+
+
 
 
 
@@ -154,44 +242,8 @@ console.log(screen.textContent)
 
 RegExp.test(screenDisplay.value)
 
-} */
+
 
 
 //let arrValue = Array.from(screenValue)
-//console.log(arrValue)
-
-
-
-
-/*  if (typeof screenValue.value === "number" && "string") {
-
-    screenValue = numberValue;
-
-    numberA = screenValue
-    console.log(numberA)
-
-} else if (typeof screenValue === )  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//console.log(arrValue)} */
