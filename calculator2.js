@@ -44,8 +44,8 @@ function operate(numberB, operator, numberA) {
 let screen = document.querySelector(".screen-display");
 let btnNumber = document.querySelectorAll(".number");
 let btnOperator = document.querySelectorAll(".operator");
-let screenPrev = document.querySelector(".prev-display")
-let screenCurrent = document.querySelector(".current-display")
+let screenPrev = document.querySelector(".prev-display");
+let screenCurrent = document.querySelector(".current-display");
 
  
 btnNumber.forEach(item => item.addEventListener("click", storeValues))
@@ -54,7 +54,11 @@ btnOperator.forEach(item => item.addEventListener("click", storeValues))
 console.log(btnOperator)
 
 
-let screenDisplay = "";
+
+//let screenDisplay = "";
+
+//screenC = "";
+//screenPrev = "";
 
 let operator = "";
 let numberA = 0; 
@@ -64,25 +68,22 @@ let numberB = 0;
 
 function storeValues(e) {
 
+    if(e.target.textContent === "clear") {
 
-      if(e.target.textContent === "clear") {
-
-    screenDisplay = "";
-    screen.textContent = "";
+    screenPrev.textContent = "";
+    screenCurrent.textContent = "";
     operator = "";
     numberA = 0; 
     numberB = 0;
 
    }
 
-
-
-
     if (e.target.className === "number"){
-        screenDisplay += e.target.textContent;
-        screen.textContent = screenDisplay; 
-        numberA = screen.textContent;
-       console.log(numberA)
+
+            screenCurrent.textContent += e.target.textContent;
+     
+            numberA = screenCurrent.textContent;
+            console.log(numberA);
 
     } 
 
@@ -91,12 +92,13 @@ function storeValues(e) {
         e.target.textContent === "-" || 
         e.target.textContent === "x"|| 
         e.target.textContent === "/"){
-        numberA = "";
-        screenDisplay = "";
+
+        screenPrev.textContent = screenCurrent.textContent;
+        screenCurrent.textContent = "";
         operator = e.target.textContent
         console.log(operator)
         
-       numberB = screen.textContent;
+       numberB = screenPrev.textContent;
        console.log(numberB);
        console.log(numberA)
       
@@ -106,7 +108,8 @@ function storeValues(e) {
 
         let result = operate(numberA, operator, numberB)
         console.log(result) 
-         screen.textContent = result
+         screenCurrent.textContent = result
+         screenPrev.textContent = "";
     }
 
     let values = [numberA, operator, numberB]
