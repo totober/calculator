@@ -1,19 +1,19 @@
 // functions for the calculator //
 
 function sum (a, b) {
-    return a + b;
+    return Number(a) + Number(b);
 }
 
 function subtract (a, b) {
-    return b - a;
+    return Number(a) - Number(b);
 }
 
 function multiply (a, b) {
-    return a * b;
+    return Number(a) * Number(b);
 }
 
 function division (a, b) {
-        let divix =  a / b;
+        let divix =  Number(a) / Number(b);
 
     return Math.round(divix * 10) / 10;
     
@@ -32,7 +32,7 @@ function operate(numberB, operator, numberA) {
        return subtract(numberB, numberA)
     } else if (operator === "x"){
        return multiply(numberB, numberA) 
-    } else if (operator === "%") {
+    } else if (operator === "/") {
        return division(numberA, numberB)
     }
 
@@ -44,6 +44,8 @@ function operate(numberB, operator, numberA) {
 let screen = document.querySelector(".screen-display");
 let btnNumber = document.querySelectorAll(".number");
 let btnOperator = document.querySelectorAll(".operator");
+let screenPrev = document.querySelector(".prev-display")
+let screenCurrent = document.querySelector(".current-display")
 
  
 btnNumber.forEach(item => item.addEventListener("click", storeValues))
@@ -57,7 +59,7 @@ let screenDisplay = "";
 let operator = "";
 let numberA = 0; 
 let numberB = 0;
-let operator2 = "";
+
 
 
 function storeValues(e) {
@@ -79,19 +81,22 @@ function storeValues(e) {
     if (e.target.className === "number"){
         screenDisplay += e.target.textContent;
         screen.textContent = screenDisplay; 
-        numberA = Number(screen.textContent);
+        numberA = screen.textContent;
        console.log(numberA)
 
     } 
 
 
-    if (e.target.textContent === "+" || e.target.textContent === "-" || e.target.textContent === "x"|| e.target.textContent === "%"){
+    if (e.target.textContent === "+" || 
+        e.target.textContent === "-" || 
+        e.target.textContent === "x"|| 
+        e.target.textContent === "/"){
         numberA = "";
         screenDisplay = "";
         operator = e.target.textContent
         console.log(operator)
         
-       numberB = Number(screen.textContent);
+       numberB = screen.textContent;
        console.log(numberB);
        console.log(numberA)
       
@@ -104,7 +109,7 @@ function storeValues(e) {
          screen.textContent = result
     }
 
-    let values = [numberA, operator, numberB, operator2]
+    let values = [numberA, operator, numberB]
     console.log(values)  
     
 }
