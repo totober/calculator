@@ -65,7 +65,7 @@ body {
     align-items: center;
 }
 
-.number {
+.numb-but {
     height: 87px;
     width: 87px;
     display: flex;
@@ -80,7 +80,7 @@ body {
     background-color: greenyellow;
 }
 
-.operator {
+.op-but {
         height: 40px;
         width: 75px;
         display: flex;

@@ -47,22 +47,27 @@ let btnNumber = document.querySelectorAll(".number");
 let btnOperator = document.querySelectorAll(".operator");
 let screenPrev = document.querySelector(".prev-display");
 let screenCurrent = document.querySelector(".current-display");
-//let btnClear = document.querySelector("")
+let dot = document.querySelector(".dot");
+let back = document.querySelector(".back");
 
  
-btnNumber.forEach(item => item.addEventListener("click", storenumb))
+btnNumber.forEach(item => item.addEventListener("click", storenumb));
 console.log(btnNumber)
-btnOperator.forEach(item => item.addEventListener("click", storeop)) 
+btnOperator.forEach(item => item.addEventListener("click", storeop)); 
+dot.addEventListener("click", storedot);
+back.addEventListener("click", backSpace);
 console.log(btnOperator)
+console.log(dot.textContent);
 
 let numberA = "";
 let operator = "";
 let numberB = "";
 let operatorPrev = "";
-let result = operate(numberA, operatorPrev, numberB)
+//let result = operate(numberA, operatorPrev, numberB)
 
 
 function storenumb (e) {
+
 
     screenCurrent.textContent += e.target.textContent;
     numberA = screenCurrent.textContent;
@@ -98,10 +103,8 @@ function storeop (e) {
             alert("You cant divide by 0!");
             operatorPrev = "";
         }
-
-        
       
-        result = operate(numberA, operatorPrev, numberB)
+       let result = operate(numberA, operatorPrev, numberB)
         console.log(result) 
         screenPrev.textContent = result
     } 
@@ -112,4 +115,21 @@ function storeop (e) {
     }
 
 }
+
+function storedot (e) {
+    if(!screenCurrent.textContent.includes(".")){
+        screenCurrent.textContent += "."
+    }
+}
+
+function backSpace (e) {
+    let backArr = screenCurrent.textContent.split("");
+    let backPop = backArr.pop();
+    let backString = backArr.join("");
+
+    numberA = backString;
+    screenCurrent.textContent = backString;
+}
+
+
 
