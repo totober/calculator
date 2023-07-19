@@ -49,6 +49,7 @@ let screenPrev = document.querySelector(".prev-display");
 let screenCurrent = document.querySelector(".current-display");
 let dot = document.querySelector(".dot");
 let back = document.querySelector(".back");
+let clear = document.querySelector(".clear");
 
  
 btnNumber.forEach(item => item.addEventListener("click", storenumb));
@@ -56,8 +57,8 @@ console.log(btnNumber)
 btnOperator.forEach(item => item.addEventListener("click", storeop)); 
 dot.addEventListener("click", storedot);
 back.addEventListener("click", backSpace);
-console.log(btnOperator)
-console.log(dot.textContent);
+clear.addEventListener("click", clearAll);
+
 
 let numberA = "";
 let operator = "";
@@ -90,7 +91,6 @@ function storenumb (e) {
 function storeop (e) {
     screenPrev.textContent = screenCurrent.textContent
     screenCurrent.textContent = "";
-    //screenCurrent.textContent = "";
     operator = e.target.textContent 
     console.log(operator)
 
@@ -109,17 +109,21 @@ function storeop (e) {
         screenPrev.textContent = result
     } 
 
-    if(e.target.textContent === "clear"){
-        operatorPrev = "";
-        screenPrev.textContent = "";
-    }
-
 }
 
 function storedot (e) {
     if(!screenCurrent.textContent.includes(".")){
         screenCurrent.textContent += "."
     }
+}
+
+function clearAll(e){
+    screenCurrent.textContent = "";
+    screenPrev.textContent = "";
+    numberA = "";
+    numberB = "";
+    operator = "";
+    operatorPrev = "";
 }
 
 function backSpace (e) {
