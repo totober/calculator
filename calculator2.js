@@ -27,11 +27,11 @@ function division (a, b) {
 function operate(numberB, operator, numberA) {
     
     if (operator === "+") {
-       return sum(numberB, numberA)
+       return sum(numberA, numberB)
     } else if (operator === "-") {
-       return subtract(numberB, numberA)
+       return subtract(numberA, numberB)
     } else if (operator === "x"){
-       return multiply(numberB, numberA) 
+       return multiply(numberA, numberB) 
     } else if (operator === "/") {
        return division(numberA, numberB)
     }
@@ -42,6 +42,7 @@ function operate(numberB, operator, numberA) {
 
 
 let screen = document.querySelector(".screen-display");
+let btnContainer = document.querySelector(".button-container")
 let btnNumber = document.querySelectorAll(".number");
 let btnOperator = document.querySelectorAll(".operator");
 let screenPrev = document.querySelector(".prev-display");
@@ -64,9 +65,12 @@ let operator = "";
 let numberA = 0; 
 let numberB = 0;
 
+let previousKey = btnContainer.dataset.prevKey;
 
 
 function storeValues(e) {
+
+  
 
     if(e.target.textContent === "clear") {
 
@@ -80,30 +84,65 @@ function storeValues(e) {
 
     if (e.target.className === "number"){
 
-            screenCurrent.textContent += e.target.textContent;
-     
-            numberA = screenCurrent.textContent;
-            console.log(numberA);
+        btnContainer.dataset.prevKey = "number";
 
+
+            screenCurrent.textContent += e.target.textContent;
+           numberA = screenCurrent.textContent;
+            console.log(numberA); 
+           // btnContainer.dataset.first = screenCurrent.textContent;
+
+
+
+   
     } 
 
 
     if (e.target.textContent === "+" || 
         e.target.textContent === "-" || 
-        e.target.textContent === "x"|| 
+        e.target.textContent === "x" || 
         e.target.textContent === "/"){
-
-        screenPrev.textContent = screenCurrent.textContent;
-        screenCurrent.textContent = "";
-        operator = e.target.textContent
-        console.log(operator)
         
-       numberB = screenPrev.textContent;
-       console.log(numberB);
-       console.log(numberA)
+                
+        console.log(numberB) 
+
+
+        btnContainer.dataset.prevKey = "operator";   
       
+ 
+        screenPrev.textContent = screenCurrent.textContent;
+ 
+        screenCurrent.textContent = "";
+
+        numberB = screenPrev.textContent;
+    
+  
+      
+         
+         operator = e.target.textContent  
+        console.log(operator)
+       
+       console.log(numberA)  
+       
+       let result = operate(numberA, operator, numberB)
+       console.log(result)     
+
+
+ /*       if(previousKey === "operator" && numberA) {
+        let result = operate(numberA, operator, numberB)
+    console.log(result) 
+       }  */
+
+  
 
     }
+           
+    let values = [numberA, operator, numberB]
+    console.log(values)
+    
+    // screenCurrent.textContent = result
+     //screenPrev.textContent = "";
+
      if ((e.target.textContent === "=")){
 
         let result = operate(numberA, operator, numberB)
@@ -112,8 +151,8 @@ function storeValues(e) {
          screenPrev.textContent = "";
     }
 
-    let values = [numberA, operator, numberB]
-    console.log(values)  
+
+ 
     
 }
 

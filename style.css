@@ -28,14 +28,17 @@ body {
     align-items: flex-end;
     flex-direction: column;
     padding: 7px;
+    flex-wrap: wrap;
 }
 
 .prev-display {
     font-size: 20px;
+
 }
 
 .current-display {
     font-size: 28px;
+
 }
 
 .button-container {
