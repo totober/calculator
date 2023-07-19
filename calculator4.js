@@ -47,6 +47,7 @@ let btnNumber = document.querySelectorAll(".number");
 let btnOperator = document.querySelectorAll(".operator");
 let screenPrev = document.querySelector(".prev-display");
 let screenCurrent = document.querySelector(".current-display");
+//let btnClear = document.querySelector("")
 
  
 btnNumber.forEach(item => item.addEventListener("click", storenumb))
@@ -58,6 +59,7 @@ let numberA = "";
 let operator = "";
 let numberB = "";
 let operatorPrev = "";
+let result = operate(numberA, operatorPrev, numberB)
 
 
 function storenumb (e) {
@@ -87,12 +89,27 @@ function storeop (e) {
     operator = e.target.textContent 
     console.log(operator)
 
+  
+
  
     if(numberA && numberB && operatorPrev){
-         let result = operate(numberA, operatorPrev, numberB)
+
+        if(operatorPrev === "/" && numberA === "0") {
+            alert("You cant divide by 0!");
+            operatorPrev = "";
+        }
+
+        
+      
+        result = operate(numberA, operatorPrev, numberB)
         console.log(result) 
         screenPrev.textContent = result
     } 
+
+    if(e.target.textContent === "clear"){
+        operatorPrev = "";
+        screenPrev.textContent = "";
+    }
 
 }
 
