@@ -1,48 +1,43 @@
-// functions for the calculator //
+// basic functions //
 
 function sum (a, b) {
-    return Number(a) + Number(b);
+    return a + b;
 }
 
 function subtract (a, b) {
-    return Number(a) - Number(b);
+    return a - b;
 }
 
 function multiply (a, b) {
-    return Number(a) * Number(b);
+    return a * b;
 }
 
 function division (a, b) {
-        let divix =  Number(a) / Number(b);
-
-    return Math.round(divix * 10) / 10;
-    
+        return  a / b; 
 }
-
-// variables to keep the 3 parts of the calculation operation //
 
 
 // function OPERATE //
 
 function operate(numberB, operatorPrev, numberA) {
-    
+
+  let toNumberA = Number(numberA);
+  let toNumberB = Number(numberB);
+ 
     if (operatorPrev === "+") {
-       return sum(numberA, numberB)
+       return sum(toNumberA, toNumberB)
     } else if (operatorPrev === "-") {
-       return subtract(numberA, numberB)
+       return subtract(toNumberA, toNumberB)
     } else if (operatorPrev === "x"){
-       return multiply(numberA, numberB) 
+       return multiply(toNumberA, toNumberB) 
     } else if (operatorPrev === "/") {
-       return division(numberA, numberB)
+       return division(toNumberA, toNumberB)
     }
 
 }
 
-// show numbers chosen by the user in the display "screen" //
+// elements selectors //
 
-
-let screen = document.querySelector(".screen-display");
-let btnContainer = document.querySelector(".button-container")
 let btnNumber = document.querySelectorAll(".number");
 let btnOperator = document.querySelectorAll(".operator");
 let screenPrev = document.querySelector(".prev-display");
@@ -51,6 +46,7 @@ let dot = document.querySelector(".dot");
 let back = document.querySelector(".back");
 let clear = document.querySelector(".clear");
 
+// elements listeners //
  
 btnNumber.forEach(item => item.addEventListener("click", storenumb));
 console.log(btnNumber)
@@ -59,13 +55,14 @@ dot.addEventListener("click", storedot);
 back.addEventListener("click", backSpace);
 clear.addEventListener("click", clearAll);
 
+// initialized variables //
 
 let numberA = "";
 let operator = "";
 let numberB = "";
 let operatorPrev = "";
-//let result = operate(numberA, operatorPrev, numberB)
 
+// functions //
 
 function storenumb (e) {
 
@@ -74,17 +71,14 @@ function storenumb (e) {
     numberA = screenCurrent.textContent;
      console.log(numberA); 
 
-     if( operator === "+" || operator === "-" ||operator === "/" ||operator === "x" ) {
+     if( operator === "+" || operator === "-" || operator === "/" || operator === "x" ) {
         
         numberB = screenPrev.textContent;
         operatorPrev = operator;
         console.log(operatorPrev)
         console.log(numberB)
-
       
      }
-
-
 
 }
 
@@ -105,16 +99,18 @@ function storeop (e) {
         }
       
        let result = operate(numberA, operatorPrev, numberB)
-        console.log(result) 
-        screenPrev.textContent = result
+       let resultRound = Math.round(result * 100) / 100;
+        screenPrev.textContent = resultRound;
     } 
 
 }
 
+
 function storedot (e) {
+ 
     if(!screenCurrent.textContent.includes(".")){
         screenCurrent.textContent += "."
-    }
+    } 
 }
 
 function clearAll(e){
