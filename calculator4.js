@@ -45,14 +45,14 @@ let screenCurrent = document.querySelector(".current-display");
 let dot = document.querySelector(".dot");
 let back = document.querySelector(".back");
 let clear = document.querySelector(".clear");
+let assign = document.querySelector(".assign")
 
 // elements listeners //
  
-btnNumber.forEach(item => item.addEventListener("click", storenumb));
-console.log(btnNumber)
-btnOperator.forEach(item => item.addEventListener("click", storeop)); 
-dot.addEventListener("click", storedot);
-back.addEventListener("click", backSpace);
+btnNumber.forEach(item => item.addEventListener("click", storeNumber));
+btnOperator.forEach(item => item.addEventListener("click", storeOperator)); 
+dot.addEventListener("click", storeDot);
+back.addEventListener("click", backspace);
 clear.addEventListener("click", clearAll);
 
 // initialized variables //
@@ -64,54 +64,68 @@ let operatorPrev = "";
 
 // functions //
 
-function storenumb (e) {
-
+function storeNumber (e) {
 
     screenCurrent.textContent += e.target.textContent;
     numberA = screenCurrent.textContent;
-     console.log(numberA); 
+     
 
-     if( operator === "+" || operator === "-" || operator === "/" || operator === "x" ) {
+     if( operator === "+" ||
+         operator === "-" ||
+         operator === "/" ||
+         operator === "x" ||
+         operator === "=") {
         
         numberB = screenPrev.textContent;
         operatorPrev = operator;
-        console.log(operatorPrev)
-        console.log(numberB)
-      
-     }
 
+    }
+     
 }
 
-function storeop (e) {
-    screenPrev.textContent = screenCurrent.textContent
+function storeOperator (e) {
+    screenPrev.textContent = screenCurrent.textContent;
     screenCurrent.textContent = "";
-    operator = e.target.textContent 
-    console.log(operator)
-
-  
-
+    operator = e.target.textContent;
  
     if(numberA && numberB && operatorPrev){
 
         if(operatorPrev === "/" && numberA === "0") {
             alert("You cant divide by 0!");
-            operatorPrev = "";
+            numberA = 1;
         }
-      
+
        let result = operate(numberA, operatorPrev, numberB)
        let resultRound = Math.round(result * 100) / 100;
-        screenPrev.textContent = resultRound;
+       screenPrev.textContent = resultRound;
+
+       if(operator === "="){
+        screenCurrent.textContent = resultRound;
+        screenPrev.textContent = "";
+ 
     } 
+
+    if( operatorPrev === "=" && 
+        numberA && 
+        (operator === "+" ||
+         operator === "-" || operator === "/" ||
+         operator === "x") ){
+        
+        alert("Syntax Error");
+        screenPrev.textContent = "";
+    }
 
 }
 
+}
 
-function storedot (e) {
+function storeDot (e) {
  
     if(!screenCurrent.textContent.includes(".")){
-        screenCurrent.textContent += "."
-    } 
+        screenCurrent.textContent += "."   
+    }
 }
+
 
 function clearAll(e){
     screenCurrent.textContent = "";
@@ -122,7 +136,7 @@ function clearAll(e){
     operatorPrev = "";
 }
 
-function backSpace (e) {
+function backspace (e) {
     let backArr = screenCurrent.textContent.split("");
     let backPop = backArr.pop();
     let backString = backArr.join("");
