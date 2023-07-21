@@ -8,36 +8,52 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background-image: linear-gradient(to right, #566573 ,#ABB2B9  );
+    /* esta propiedad la uso para que el gradient ocupe todo el width de la pantalla y no se me corte*/ 
+    background-attachment: fixed;
+
+
 }
 
 .main-div {
-    width: 500px;
-    height: 500px;
+    width: 410px;
+    height: 530px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #17202A ;
+    border-radius: 5px;
 }
 
 .screen-display {
-    height: 100px ;
+    height: 110px ;
     width:  380px;
+    margin: 15px;
     border-style: solid;
     border-width: 1px;
     border-radius: 4px;
-    border-color: lightgray;
-    margin-bottom: 10px;
+    border-color: #B3B6B7;
+    background-color: #5D6D7E; 
     display: flex;
     justify-content:space-evenly;
     align-items: flex-end;
     flex-direction: column;
     padding: 7px;
     flex-wrap: wrap;
+
 }
 
 .prev-display {
-    font-size: 20px;
+    font-size: 24px;
+    font-family: 'Lucida Sans', Arial, sans-serif;
+    color: #ECF0F1 ;
 
 }
 
 .current-display {
-    font-size: 28px;
+    font-size: 34px;
+    font-family: 'Lucida Sans', Arial, sans-serif;
+    color: #ECF0F1 ;
 
 }
 
@@ -47,14 +63,17 @@ body {
     flex-direction: row;
     height: 380px;
     width: 380px; 
+    margin: 15px;
 
 }
+
 
 .number-container {
     display: flex;
     width: 280px;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: #17202A ;
 }
 
 .operator-container {
@@ -63,30 +82,50 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    background-color: #17202A ;
 }
 
 .numb-but {
     height: 87px;
     width: 87px;
+    font-size: 22px;
+    font-family: Verdana, Tahoma, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    background-color: grey;
+    background-color: #2C3E50;
+   color: #D0D3D4 ;
+    transition: 0.3s;
 }
 
+.numb-but:hover {
+    background-color: #5D6D7E  ;
+    color: #ECF0F1;
+    transform: scale(1.1);
+}
+
+.op-but:hover {
+    background-color: #566573  ;
+    color: #ECF0F1;
+    transform: scale(1.1);
+}
 
 .op-but {
         height: 40px;
         width: 75px;
+        font-size: 17px;
+        font-family: Verdana, Tahoma, sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 4px;
-        background-color: grey;
+        background-color: #34495E ;
+        color: #D0D3D4 ;
+        transition: 0.3s;
 }
 
 .op-but.press {
-    background-color: yellowgreen;
+    background-color: rgb(80, 78, 78);
 }
 

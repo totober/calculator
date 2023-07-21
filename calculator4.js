@@ -51,7 +51,7 @@ let btn = document.querySelectorAll("button");
 // elements listeners //
  
 btnNumber.forEach(item => item.addEventListener("click", storeNumber));
-btnOperator.forEach(item => item.addEventListener("click", storeOperator)); 
+btnOperator.forEach(item => item.addEventListener("click", storeOperator));  
 dot.addEventListener("click", storeDot);
 back.addEventListener("click", backspace);
 clear.addEventListener("click", clearAll);
@@ -150,11 +150,14 @@ function backspace (e) {
     screenCurrent.textContent = backString;
 }
 
- function notPress(e){
+function notPress(e){
    if(!e.target.classList.contains("operator")) {
     btnOperator.forEach(btn => btn.classList.remove("press"))
    }
-} 
+}  
+
+
+
 
 
 
