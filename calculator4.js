@@ -30,7 +30,7 @@ function operate(numberB, operatorPrev, numberA) {
        return subtract(toNumberA, toNumberB)
     } else if (operatorPrev === "x"){
        return multiply(toNumberA, toNumberB) 
-    } else if (operatorPrev === "/") {
+    } else if (operatorPrev === "÷") {
        return division(toNumberA, toNumberB)
     }
 
@@ -45,7 +45,8 @@ let screenCurrent = document.querySelector(".current-display");
 let dot = document.querySelector(".dot");
 let back = document.querySelector(".back");
 let clear = document.querySelector(".clear");
-let assign = document.querySelector(".assign")
+let assign = document.querySelector(".assign");
+let btn = document.querySelectorAll("button");
 
 // elements listeners //
  
@@ -54,6 +55,7 @@ btnOperator.forEach(item => item.addEventListener("click", storeOperator));
 dot.addEventListener("click", storeDot);
 back.addEventListener("click", backspace);
 clear.addEventListener("click", clearAll);
+btn.forEach(item => item.addEventListener("click", notPress));
 
 // initialized variables //
 
@@ -72,7 +74,7 @@ function storeNumber (e) {
 
      if( operator === "+" ||
          operator === "-" ||
-         operator === "/" ||
+         operator === "÷" ||
          operator === "x" ||
          operator === "=") {
         
@@ -87,10 +89,12 @@ function storeOperator (e) {
     screenPrev.textContent = screenCurrent.textContent;
     screenCurrent.textContent = "";
     operator = e.target.textContent;
+    if(e.target.textContent !== "=") {e.target.classList.add("press")}
+    
  
     if(numberA && numberB && operatorPrev){
 
-        if(operatorPrev === "/" && numberA === "0") {
+        if(operatorPrev === "÷" && numberA === "0") {
             alert("You cant divide by 0!");
             numberA = 1;
         }
@@ -108,7 +112,8 @@ function storeOperator (e) {
     if( operatorPrev === "=" && 
         numberA && 
         (operator === "+" ||
-         operator === "-" || operator === "/" ||
+         operator === "-" || 
+         operator === "÷" ||
          operator === "x") ){
         
         alert("Syntax Error");
@@ -144,6 +149,12 @@ function backspace (e) {
     numberA = backString;
     screenCurrent.textContent = backString;
 }
+
+ function notPress(e){
+   if(!e.target.classList.contains("operator")) {
+    btnOperator.forEach(btn => btn.classList.remove("press"))
+   }
+} 
 
 
 
